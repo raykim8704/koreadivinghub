@@ -1,11 +1,12 @@
 <template>
 <v-layout row justify-center>
-    <v-btn @click.stop="dialog = !dialog" depressed block outline color="white" class="blue--text v-btn--block">로그인</v-btn>
 
+   <!--<v-btn @click="dialog = width" v-bind:block = "width"  depressed color="blue" class="white--text">가입하기 </v-btn> !-->
+  
     <v-dialog v-model="dialog" max-width="600px">
     <v-card>
         <v-card-title>
-            <h2>Log in modal</h2>
+            <h2>Login Modal</h2>
         </v-card-title>
     </v-card>
 
@@ -14,14 +15,23 @@
 </template>
 
 <script>
-    module.exports= {
+// import firebase from 'firebase';
 
+    module.exports= {
+        props : {
+            open : Boolean ,
+        },
         data (){
             return {
-                dialog : false
+                 dialog : this.open
             }
+        },
+        watch : {
+            open : function (value){
+                this.dialog = value ? value : !value
+            }
+        }, 
 
-        }
     }
 
 </script>

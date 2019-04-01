@@ -1,6 +1,7 @@
 <template>
 <v-layout row justify-center>
-    <v-btn @click="dialog = true" depressed block color="blue" class="white--text v-btn--block">가입하기</v-btn>
+
+   <!--<v-btn @click="dialog = width" v-bind:block = "width"  depressed color="blue" class="white--text">가입하기 </v-btn> !-->
   
     <v-dialog v-model="dialog" max-width="600px">
     <v-card>
@@ -15,11 +16,20 @@
 
 <script>
     module.exports= {
+        props : {
+            open : Boolean ,
+        },
         data (){
             return {
-                 dialog : false
+                 dialog : this.open
             }
-        }
+        },
+        watch : {
+            open : function (value){
+                this.dialog = value ? value : !value
+            }
+        }, 
+
     }
 
 </script>

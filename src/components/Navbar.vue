@@ -29,11 +29,12 @@
         <v-container v-if="login" >
             <v-layout row wrap>
                 <v-flex xs12>
-
-                    <Loginmodal/>
+                <v-btn @click.stop="loginDialog = !loginDialog" depressed block outline color="white" class="blue--text v-btn--block">로그인</v-btn>
+                    <Loginmodal v-bind:open="loginDialog" />
                 </v-flex>
                 <v-flex xs12>
-                    <Joinmodal/>
+                   <v-btn @click="dialog = !dialog" depressed block color="blue" class="white--text">가입하기</v-btn>
+                   <Joinmodal v-bind:open="dialog"/>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -68,8 +69,9 @@ export default{
   },
     data() {
         return {
-          
-  
+            loginDialog : false,
+            dialog : false, 
+            max : true,
             login : true,
             drawer : false,
             links : [
