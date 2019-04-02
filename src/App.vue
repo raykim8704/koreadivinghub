@@ -1,6 +1,6 @@
 <template>
   <v-app class="grey lighten-3">
-   <Navbar/>
+   <Navbar :isSignin = "signinstate" :userinfo = "userinfo"/>
 
     <v-content>
       <v-container grid-list-xl>
@@ -17,15 +17,33 @@
 
 <script>
 import Navbar from '@/components/Navbar'
+import firebase from 'firebase'
+// import firebaseui from 'firebaseui';
+import {config} from './helpers/firebaseConfig'
+import 'firebaseui/dist/firebaseui.css'
 
 export default {
+   created(){
+    firebase.initializeApp(config);
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        console.log('login');
+        this.userinfo = user;
+        this.signinstate = true;
+      }else{
+        console.log('logout');
+        this.signinstate = false;
+      }
+    })
+  },
   name: 'App',
   components: {
-    Navbar,
+    Navbar
   },
   data () {
     return {
-      //
+      signinstate : false,
+      userinfo : {}
     }
   }
 }

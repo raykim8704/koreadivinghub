@@ -7,6 +7,7 @@
     <v-card>
         <v-card-title>
             <h2>Login Modal</h2>
+             <div id="firebaseui-auth-container"></div>
         </v-card-title>
     </v-card>
 
@@ -15,12 +16,26 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 // import firebase from 'firebase';
+import firebaseui from 'firebaseui'
+// import {config} from '../../helpers/firebaseConfig';
 
-    module.exports= {
+export default{
+        mounted() {
+    var uiConfig = {
+      signInSuccessUrl: '/success',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        ]
+      };
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
+    },
         props : {
             open : Boolean ,
         },
+        
         data (){
             return {
                  dialog : this.open
@@ -31,6 +46,7 @@
                 this.dialog = value ? value : !value
             }
         }, 
+        
 
     }
 
