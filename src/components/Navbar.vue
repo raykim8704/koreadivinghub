@@ -29,6 +29,7 @@
         </v-layout>
       </v-container>
       <component :is="signInOut" v-bind:userinfo="userinfoCheck"></component>
+      <!-- <userProfileComponent :userinfo="userinfoCheck"/> -->
       <v-list>
         <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
           <v-list-tile-action>
@@ -52,6 +53,7 @@ import userProfileComponent from "./LoginComponents/userProfileComponent";
 export default {
   props: ["userinfo", "isSignin"],
   created() {
+    console.log('nav created!')
     // firebase.auth().onAuthStateChanged(function(user) {
     //   if (user) {
     //     // User is signed in.
@@ -102,7 +104,12 @@ export default {
   methods: {
       userinfoCheck: function() {
         // console.log(this.isEmpty({}))
-      if (!this.isEmpty(userinfo)) return userinfo;
+      if (!this.isEmpty(this.userinfo)){
+         return this.userinfo
+         }
+      else{
+        return {}
+        }
     },
    
      isEmpty: function(obj) {

@@ -28,10 +28,12 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if(user){
         console.log('login');
+        console.log('login user info : ',user.displayName);
         this.userinfo = user;
         this.signinstate = true;
       }else{
         console.log('logout');
+        this.userinfo = {};
         this.signinstate = false;
       }
     })

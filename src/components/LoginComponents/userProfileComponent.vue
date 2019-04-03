@@ -9,18 +9,20 @@
 <script>
 // import firebase from 'firebase';
 export default {
-    props: {
-        userinfo : {
-            type : Function,
-            required : true
-        }
+    created (){
+        console.log('user profile component created');
+        console.log(this.userinfo());
+        this.objUser = this.userinfo();
+        console.log(this.objUser.displayName)
     },
+    props: ['userinfo'],
   components: {
   },
 
   data() {
     return {
-        username = userinfo.displayName
+        objUser : {}
+        // username = userinfo
     }
   },
 };

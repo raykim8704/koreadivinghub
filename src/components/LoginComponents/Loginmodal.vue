@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+// import firebase from 'firebase';
 // import firebase from 'firebase';
 import firebaseui from 'firebaseui'
 // import {config} from '../../helpers/firebaseConfig';
