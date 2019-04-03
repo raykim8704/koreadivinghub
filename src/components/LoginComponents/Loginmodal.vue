@@ -51,3 +51,16 @@ export default{
     }
 
 </script>
+// [2019. 4. 3. 오후 5:20:51] 이기섭(LDCC-솔루션연구팀 서비스연구담당): let ui = firebaseui.auth.AuthUI.getInstance();
+//     if (!ui) {
+//       ui = new firebaseui.auth.AuthUI(window.firebase.auth());
+//     }
+//     ui.start('#firebaseui-auth-container', uiConfig);
+// [2019. 4. 3. 오후 5:21:00] 이기섭(LDCC-솔루션연구팀 서비스연구담당): 요 로직도 해보셨나요?
+// [2019. 4. 3. 오후 5:21:15] 김광훈(LDCC-솔루션연구팀 플랫폼연구담당): 이걸로 해보게썰
+// [2019. 4. 3. 오후 5:21:34] 이기섭(LDCC-솔루션연구팀 서비스연구담당): 아 window 객체
+// [2019. 4. 3. 오후 5:21:38] 이기섭(LDCC-솔루션연구팀 서비스연구담당): let ui = firebaseui.auth.AuthUI.getInstance()
+//     if (!ui) {
+//       ui = new firebaseui.auth.AuthUI(firebase.auth())
+//     }
+//     ui.start('#firebaseui-auth-container', uiConfig)
