@@ -17,14 +17,14 @@
 
 <script>
 // import firebase from 'firebase';
-// import firebase from 'firebase';
+import firebase from 'firebase';
 import firebaseui from 'firebaseui'
-// import {config} from '../../helpers/firebaseConfig';
+import {config} from '../../helpers/firebaseConfig';
 
 export default{
         mounted() {
     var uiConfig = {
-      signInSuccessUrl: '/success',
+    //   signInSuccessUrl: '/',
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         ]

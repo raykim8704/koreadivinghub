@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>{{userinfo}}</p>
+        <p>{{this.objUser.displayName}}</p>
     </div>
 </template>
 

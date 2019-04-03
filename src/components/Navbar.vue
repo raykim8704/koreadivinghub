@@ -5,8 +5,8 @@
     <v-toolbar flat app class="blue lighen-1">
       <v-toolbar-side-icon class="hidden-sm-and-up white--text" @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="text-uppercase white--text">
-        <span class="font-weight-light">Korea</span>
-        <span>DivingHub</span>
+        <span class="font-weight-light">site</span>
+        <span>Title</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title class="hidden-xs-only">
@@ -20,8 +20,8 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs11 class="text-xs-center">
-            <span class="font-weight-light blue--text">Korea</span>
-            <span class="font-weight-bold blue--text">DivingHub</span>
+            <span class="font-weight-light blue--text">site</span>
+            <span class="font-weight-bold blue--text">Title</span>
           </v-flex>
           <v-flex xs1>
             <v-icon class="blue--text" @click="drawer = !drawer">close</v-icon>
@@ -40,6 +40,7 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+      <Signoutcomponent v-if="isSignin"/>
     </v-navigation-drawer>
   </nav>
 </template>
