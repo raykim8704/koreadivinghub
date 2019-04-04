@@ -49,6 +49,8 @@
 import Signincomponent from "./LoginComponents/Signincomponent";
 import Signoutcomponent from "./LoginComponents/Signoutcomponent";
 import userProfileComponent from "./LoginComponents/userProfileComponent";
+import {mapState} from 'vuex';
+
 // import firebase from "firebase";
 
 export default {
@@ -99,7 +101,9 @@ export default {
       } else {
         return "Signincomponent";
       }
-    }
+    },
+
+    ...mapState(['user'])
     
   },
   methods: {
