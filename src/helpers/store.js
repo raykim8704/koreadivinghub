@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 const state = {
   user: null,
-  loader:false
+  loader:false,
+  popup:false,
+  message:''
 }
 
 const mutations = {
@@ -14,6 +16,12 @@ const mutations = {
   },
   LOADER(state,payload) {
       state.loader = payload;
+  },
+  popup(state,payload){
+    state.popup = payload
+  },
+  message(state,payload){
+    state.message = payload
   }
 }
 const getters = {

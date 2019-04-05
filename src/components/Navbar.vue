@@ -40,7 +40,7 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-      <Signoutcomponent v-if="isSignin"/>
+      <Signoutcomponent v-if="this.$store.state.user != null"/>
     </v-navigation-drawer>
   </nav>
 </template>
@@ -96,13 +96,12 @@ export default {
   },
   computed: {
     signInOut() {
-      if (this.isSignin) {
+      if (this.$store.state.user) {
         return "userProfileComponent";
       } else {
         return "Signincomponent";
       }
     },
-
     ...mapState(['user'])
     
   },

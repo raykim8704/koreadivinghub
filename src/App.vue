@@ -1,6 +1,6 @@
 <template>
   <v-app class="grey lighten-3">
-   <Navbar :isSignin = "signinstate" :userinfo = "userinfo"/>
+   <Navbar/>
 
     <v-content>
       <v-container grid-list-xl>
@@ -12,12 +12,14 @@
       </v-container>
     </v-content>
     <Loader></Loader>
+    <Message/>
   </v-app>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
 import Loader from './components/partials/_loader'
+import Message from './components/partials/_message'
 import axios from 'axios'
 
 // import firebase from 'firebase'
@@ -29,39 +31,16 @@ import 'firebaseui/dist/firebaseui.css'
 
 export default {
    created(){
-     axios.interceptors.request.use( (config) => {
-     console.log('axios request')
-       this.$store.commmit('LOADER',true);
-       return config;
-     }, (error) => {
-       this.$store.commit('LOADER',false);
-       return Promise.reject(error);
-     });
-
-  axios.interceptors.response.use( (response) => {
-    console.log(response);
-       this.$store.commmit('LOADER',true);
-       return response;
-     }, (error) => {
-       return new Promise( (resolve,reject) => {
-         this.$store.dispatch('logout').then( () => {
-           this.$router.push('./login')
-         })
-         throw error;
-       })
-     });
-
-   
   },
   name: 'App',
   components: {
     Navbar,
-    Loader
+    Loader,
+    Message
   },
   data () {
     return {
-      signinstate : false,
-      userinfo : {}
+
     }
   }
 }

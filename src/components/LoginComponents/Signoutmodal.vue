@@ -29,13 +29,8 @@ export default {
     };
   },
   methods : {
-      firebaseSignout : function(){
-          firebase.auth().signOut().then(function() {
-              console.log('signout success')
-  // Sign-out successful.
-}).catch(function(error) {
-  // An error happened.
-});
+      firebaseSignout :async function(){
+          await this.$auth.logout()
       }
   },
   watch: {

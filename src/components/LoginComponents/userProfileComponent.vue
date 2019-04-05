@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>{{this.objUser.displayName}}</p>
+        <p>{{this.objUser.email}}</p>
     </div>
 </template>
 
@@ -11,9 +11,10 @@
 export default {
     created (){
         console.log('user profile component created');
-        console.log(this.userinfo());
-        this.objUser = this.userinfo();
-        console.log(this.objUser.displayName)
+        console.log(this.$store.state.user);
+        this.objUser = this.$store.state.user;
+        console.log(this.objUser)
+       
     },
     props: ['userinfo'],
   components: {
@@ -22,6 +23,7 @@ export default {
   data() {
     return {
         objUser : {}
+        
         // username = userinfo
     }
   },
