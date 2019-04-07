@@ -31,6 +31,7 @@ export default {
   methods : {
       firebaseSignout :async function(){
           await this.$auth.logout()
+          this.dialog = false
       }
   },
   watch: {

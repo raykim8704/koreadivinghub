@@ -7,7 +7,8 @@ const state = {
   user: null,
   loader:false,
   popup:false,
-  message:''
+  message:'',
+  userinfo : null
 }
 
 const mutations = {
@@ -22,10 +23,14 @@ const mutations = {
   },
   message(state,payload){
     state.message = payload
+  },
+  updateUserinfo(state, userinfo ){
+    Vue.set(state,'userinfo', userinfo)
   }
 }
 const getters = {
-  user: state => state.user
+  user: state => state.user,
+  userinfo : state => state.userinfo
 }
 const actions = {
 }

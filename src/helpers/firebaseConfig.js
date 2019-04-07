@@ -14,13 +14,29 @@ export const config = {
 export default {
   install: (Vue, options) => {
     const firebase = Firebase.initializeApp(config)
-    const auth = firebase.auth()
+    const auth = firebase.auth();
+ 
     Vue.prototype.$auth = {
       login: async (username, pass) => {
         return await loader(auth.signInWithEmailAndPassword(username, pass));
       },
       register: async (email, password) => {
         const signInWithFirestore = await function(email,password){
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL	)
+          .then(function() {
+            // Existing and future Auth states are now persisted in the current
+            // session only. Closing the window would clear any existing state even
+            // if a user forgets to sign out.
+            // ...
+            // New sign-in will be persisted with session persistence.
+            return firebase.auth().signInWithEmailAndPassword(email, password);
+          })
+          .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
+      
           return auth.createUserWithEmailAndPassword(email, password).then((user) => {
        
             saveToFirestore();
@@ -48,13 +64,45 @@ export default {
       },
       logout: async () => {
         await loader(auth.signOut())
-      }
+      },
+   
     }
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(async user => {
       console.log(user)
-      store.commit('updateUser', { user })
+      
+      if(user){
+        await getDataFromFirestore('users',user.uid)
+      .then((response) => {
+        console.log('doc', response.data())
+        const userInfo = response.data();
+        
+        store.commit('updateUserinfo',  userInfo )
+        store.commit('updateUser', { user });
+      })
+      .catch((error) => {
+        // alert(error)
+      })
+      }else{
+        store.commit('updateUser', { user });
+        store.commit('updateUserinfo',  null )
+      }
+      
     })
 
+    var getDataFromFirestore = (coll,doc) => { 
+      var db = firebase.firestore();
+      var userRef =  db.collection(coll).doc(doc);
+      return new Promise ((resolve,reject) => {
+        userRef.get().then((doc) => {
+          resolve(doc)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+      }) 
+     
+
+    }
     var saveToFirestore = async (coll,doc,data) => {
       console.log(user)
       console.log('save firestore')

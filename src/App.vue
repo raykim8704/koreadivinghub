@@ -20,14 +20,8 @@
 import Navbar from '@/components/Navbar'
 import Loader from './components/partials/_loader'
 import Message from './components/partials/_message'
-import axios from 'axios'
-
-// import firebase from 'firebase'
-// import firebaseui from 'firebaseui';
-// import {config} from './helpers/firebaseConfig'
 import 'firebaseui/dist/firebaseui.css'
-// import { resolve } from 'dns';
-// import { reject } from 'q';
+
 
 export default {
    created(){
@@ -42,6 +36,7 @@ export default {
     return {
 
     }
-  }
+  },
+
 }
 </script>
